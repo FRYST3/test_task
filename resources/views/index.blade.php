@@ -7,10 +7,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
     <link type="text/css" rel="StyleSheet" href="https://bootstraptema.ru/plugins/2016/shieldui/style.css" />
     <script src="https://bootstraptema.ru/plugins/jquery/jquery-1.11.3.min.js"></script>
+    
     <script src="https://bootstraptema.ru/plugins/2016/shieldui/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/js/app.js"></script>
 
     <title>Task</title>
 </head>
@@ -71,7 +73,26 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <div class="wallet-form">
+        <div class="form-row">
+                                            <p class="form-label">Сумма пополнения:</p>
+                                            <label class="label">
+                                                    <div class="wallet-input">
+                                                        <input type="number" step="1" name="text" placeholder="Введите сумму пополнения" class="input" id="amount-deposit">
+                                                        <div class="right-label">
+                                                            <div class="currencies"></div>
+                                                        </div>
+                                                    </div>
+                                            </label>
+                                        </div>
+                                        <div class="form-row"></div>
+                                        <div class="form-row form-sumbit">
+                                            <div class="currency-sumbit">
+                                                <button class="submit-btn deposit__btn button" onclick="deposit()">Пополнить</button>
+                                            </div>
+                                        </div>
+        </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Payment;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Datatables;
 
@@ -48,5 +49,50 @@ class PagesController extends Controller
         User::where('id', $id)->delete();
 
         return redirect('/')->with('success', 'Пользователь удалён');
+    }
+
+    public function createLink(Request $r) {
+        $size = preg_replace('/[^0-9.]/', '', $r->size);
+        $deposit = Payment::create([
+            'user_id' => '1',
+            'amount' => $size,
+            'method' => 'fk'
+        ]); 
+            $merchant_id = 'test';
+            $secret_word = 'test';
+            $order_id = $deposit->id;
+            $order_amount = $size;
+            $currency = 'RUB';
+            $sign = md5($merchant_id.':'.$order_amount.':'.$secret_word.':'.$currency.':'.$order_id);
+
+            return 'https://pay.freekassa.ru/?m=111&oa='.$order_amount.'&i=&currency=RUB&em=&phone=&o='.$order_id.'&pay=PAY&s='.$sign;
+    }
+
+    public function checkPaymentFk(Request $r) {
+        $merchant_id = '24454';
+        $merchant_secret = 'Jg?*1tH{_A.ET,t';
+        // $amount = $r->amount;
+        // $merchant_orderid = $r->merchant_order_id;
+        // $rsign = $r->sign;
+
+        $sign = md5($merchant_id.':'.$_REQUEST['AMOUNT'].':'.$merchant_secret.':'.$_REQUEST['MERCHANT_ORDER_ID']);
+
+        if ($sign != $_REQUEST['SIGN']) die('wrong sign');
+        
+        if($sign == $_REQUEST['SIGN']) {
+            $payment = Payments::where('id', $_REQUEST['MERCHANT_ORDER_ID'])->first();
+            if(!$payment) return 'Платеж не найден';
+
+            $user = User::where('id', $payment->user_id)->first();
+            
+            $user->deposit_sum = $upd_deposit;
+            $user->balance+= $payment->amount;
+            $user->cashback+= 5*(1/100)*$payment->amount;
+            $user->save();
+            $payment->status = 1;
+            $payment->save(); 
+
+            die('Оплата зачислена на сайт. ID пользователя: '.$payment->user_id);
+        }    
     }
 }

@@ -19,3 +19,6 @@ Route::get('/crud/{id}', [PagesController::class,'crud'])->name('crud');
 Route::post('/user/save', [PagesController::class, 'userSave']);
 Route::get('/delete/{id}', [PagesController::class,'userdelete']);
 Route::post('/user/new', [PagesController::class,'usernew']);
+Route::post('/pay/fk', [PagesController::class,'createLink']);
+
+Route::post('/payment/fk/handle', [PagesController::class, 'checkPaymentFk']);
