@@ -75,6 +75,7 @@
 
     <div class="wallet-form">
         <div class="form-row">
+            <form action="/pay/fk" method="POST">
                                             <p class="form-label">Сумма пополнения:</p>
                                             <label class="label">
                                                     <div class="wallet-input">
@@ -88,9 +89,10 @@
                                         <div class="form-row"></div>
                                         <div class="form-row form-sumbit">
                                             <div class="currency-sumbit">
-                                                <button class="submit-btn deposit__btn button" onclick="deposit()">Пополнить</button>
+                                                <button class="submit-btn deposit__btn button" type="sumbit">Пополнить</button>
                                             </div>
                                         </div>
+                                        </form>
         </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

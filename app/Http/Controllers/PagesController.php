@@ -51,21 +51,20 @@ class PagesController extends Controller
         return redirect('/')->with('success', 'Пользователь удалён');
     }
 
-    public function createLink(Request $r) {
-        $size = preg_replace('/[^0-9.]/', '', $r->size);
+    public function createLink() {
         $deposit = Payment::create([
             'user_id' => '1',
-            'amount' => $size,
+            'amount' => '500',
             'method' => 'fk'
         ]); 
             $merchant_id = 'test';
             $secret_word = 'test';
             $order_id = $deposit->id;
-            $order_amount = $size;
+            $order_amount = '500';
             $currency = 'RUB';
             $sign = md5($merchant_id.':'.$order_amount.':'.$secret_word.':'.$currency.':'.$order_id);
 
-            return 'https://pay.freekassa.ru/?m=111&oa='.$order_amount.'&i=&currency=RUB&em=&phone=&o='.$order_id.'&pay=PAY&s='.$sign;
+            return redirect('https://pay.freekassa.ru/?m=111&oa='.$order_amount.'&i=&currency=RUB&em=&phone=&o='.$order_id.'&pay=PAY&s='.$sign);
     }
 
     public function checkPaymentFk(Request $r) {
