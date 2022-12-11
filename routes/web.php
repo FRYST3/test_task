@@ -16,3 +16,6 @@ use App\Http\Controllers\PagesController;
 
 Route::get('/', [PagesController::class,'index'])->name('index');
 Route::get('/crud/{id}', [PagesController::class,'crud'])->name('crud');
+Route::post('/user/save', [PagesController::class, 'userSave']);
+Route::get('/delete/{id}', [PagesController::class,'userdelete']);
+Route::post('/user/new', [PagesController::class,'usernew']);
