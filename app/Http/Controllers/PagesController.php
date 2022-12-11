@@ -68,8 +68,8 @@ class PagesController extends Controller
     }
 
     public function checkPaymentFk(Request $r) {
-        $merchant_id = '24454';
-        $merchant_secret = 'Jg?*1tH{_A.ET,t';
+        $merchant_id = 'test';
+        $merchant_secret = 'test';
         // $amount = $r->amount;
         // $merchant_orderid = $r->merchant_order_id;
         // $rsign = $r->sign;
