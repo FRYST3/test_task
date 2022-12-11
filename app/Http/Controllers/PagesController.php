@@ -80,14 +80,11 @@ class PagesController extends Controller
         if ($sign != $_REQUEST['SIGN']) die('wrong sign');
         
         if($sign == $_REQUEST['SIGN']) {
-            $payment = Payments::where('id', $_REQUEST['MERCHANT_ORDER_ID'])->first();
+            $payment = Payment::where('id', $_REQUEST['MERCHANT_ORDER_ID'])->first();
             if(!$payment) return 'Платеж не найден';
 
             $user = User::where('id', $payment->user_id)->first();
-            
-            $user->deposit_sum = $upd_deposit;
             $user->balance+= $payment->amount;
-            $user->cashback+= 5*(1/100)*$payment->amount;
             $user->save();
             $payment->status = 1;
             $payment->save(); 
