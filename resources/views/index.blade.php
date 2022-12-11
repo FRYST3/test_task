@@ -22,19 +22,20 @@
                     <th>ID</th>
                     <th>Пользователь</th>
                     <th>Баланс</th>
-                    <th>Профиль VK</th>
-                    <th>Привилегии</th>
-                    <th>IP Адрес</th>
-                    <th>Бан</th>
+                    <th>Пароль</th>
                     <th style="text-aling: center;">Действия</th>
                   </tr>
                 </thead>
                 <tbody id="content">
+                @foreach($userget as $user)
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->username }}</td>
+                        <td>{{ $user->balance }}</td>
+                        <td>{{ $user->password }}</td>
+                        <td><button type="button" class="btn btn-primary btm-sm" onclick="location.href='/crud/{{ $user->id }}'">Редактировать</button></td>
                     </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
